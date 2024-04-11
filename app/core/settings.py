@@ -40,7 +40,7 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
 INSTALLED_APPS = [
     # my apps
     'accounts',
-    'graph'
+    'graph',
     # core apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'djoser',
     'imagekit',
     'corsheaders',
+    'graphene_django',
 
     
     
@@ -112,6 +113,9 @@ DJOSER = {
         'current_user':'accounts.serializers.currentUserSerializer',
         'user_delete':'accounts.serializers.deleteUserSerializer'
         },
+}
+GRAPHENE = {
+    "SCHEMA": "graph.schema.schema"
 }
 
 

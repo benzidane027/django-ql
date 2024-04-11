@@ -22,5 +22,6 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('accounts/', include('djoser.urls')),
     path('accounts/', include('djoser.urls.authtoken')),
-    path('', include('accounts.urls'))
+    path('', include('accounts.urls')),
+    path('q/', include('graph.urls'))
 ]

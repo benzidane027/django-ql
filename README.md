@@ -16,6 +16,8 @@ to run migrations:
 
 to run fixtures: (deprecated)
 
+docker compose exec api ./manage.py loaddata path/to/fixture/data.(yml or json)
+
 
 to explore the db :
 
