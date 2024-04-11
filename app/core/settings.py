@@ -40,6 +40,7 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
 INSTALLED_APPS = [
     # my apps
     'accounts',
+    'graph'
     # core apps
     'django.contrib.admin',
     'django.contrib.auth',

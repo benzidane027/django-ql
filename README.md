@@ -16,7 +16,6 @@ to run migrations:
 
 to run fixtures: (deprecated)
 
-* docker compose exec api ./manage.py loaddata  b2_server/fixtures/b2_permisions.yaml;
 
 to explore the db :
 
