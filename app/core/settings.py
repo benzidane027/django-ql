@@ -36,6 +36,7 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
     'http://127.0.0.0:8000',
     'https://127.0.0.0',
 ]
+CSRF_TRUSTED_ORIGINS = ["https://localhost","https://127.0.0.1"]
 # Application definition
 INSTALLED_APPS = [
     # my apps
