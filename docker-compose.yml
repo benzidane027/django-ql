@@ -58,6 +58,8 @@ services:
       - ./conf/cert.crt:/etc/nginx/ssl/cert.crt
       - ./conf/key.key:/etc/nginx/ssl/key.key
       - ./conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./conf/logs:/var/log/nginx
+
     ports:
       - "443:443"
     networks:
