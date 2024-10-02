@@ -44,6 +44,9 @@ services:
       db: 
         condition: service_healthy
         restart: true
+      minio: 
+        condition: service_healthy
+        restart: true
     networks:
       app_net_ql:
         ipv4_address: 15.0.0.10
@@ -67,8 +70,28 @@ services:
         ipv4_address: 15.0.0.30
     env_file:
       - ./app/.env
-
+  
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    ports:
+      - "9000:9000"  # MinIO API port
+      - "9001:9001"  # MinIO console port (web interface)
+    volumes:
+      - ./storage:/data    # Persistent storage for MinIO
+    command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    env_file:
+      - ./app/.env
+    networks:
+      app_net_ql:
+        ipv4_address: 15.0.0.40
 volumes:
   data:
   app:
   conf:
+  storage:
