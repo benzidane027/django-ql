@@ -1,10 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser ,BaseUserManager
 import datetime
-
+import uuid
 
 GENDER = [("male","male"),("female","female")]
 AVATAR = [("1","url 01"),("2","url 02")]
+
+def picture_upload(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = '{}.{}'.format(instance.image_uid, ext)
+    folder_name= f"storeFolder_{instance.username.replace(".","_")}"
+    
+    return f"media/{folder_name}/{filename}"
+
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -36,6 +44,8 @@ class profile(AbstractUser):
     EMAIL_FIELD = 'email'
 
     objects = CustomUserManager()
+    image=models.ImageField("image","image",upload_to=picture_upload)
+    image_uid = models.UUIDField(default=uuid.uuid4)
     
     email = models.EmailField('email address', unique=True)
     password = models.CharField(blank=False,max_length=128, verbose_name='password')
@@ -44,6 +54,10 @@ class profile(AbstractUser):
     avatar = models.CharField(choices=AVATAR ,default="1")
     firstName= models.CharField(blank=False, max_length=150, verbose_name='first name')
     lastName = models.CharField(blank=False, max_length=150, verbose_name='last name')
+    
+    @property
+    def full_name(self):
+        return f"{self.firstName}_{self.lastName}"
     
     class Meta:
         app_label = 'accounts' 
