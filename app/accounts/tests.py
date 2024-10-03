@@ -32,8 +32,8 @@ class AccountTests(APITestCase):
         data = {
             "email":"test@test.dz",
             "password":"test",
-            "firstName":"test",
-            "lastName":"test"
+            "first_name":"test",
+            "last_name":"test"
         }
         response = self.client.post('/accounts/users/',data,format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -43,8 +43,8 @@ class AccountTests(APITestCase):
         data = {
             "email":"test@test.dz",
             "password":"test",
-            "firstName":"test",
-            "lastName":"test"
+            "first_name":"test",
+            "last_name":"test"
         }
         self.client.post('/accounts/users/',data,format='json')
         response = self.client.post('/accounts/users/',data,format='json')
@@ -76,8 +76,8 @@ class AccountTests(APITestCase):
         data = {
             "email":"test@test.dz",
             "password":"test",
-            "firstName":"test",
-            "lastName":"test"
+            "first_name":"test",
+            "last_name":"test"
         }
         self.client.post('/accounts/users/',data,format='json')
         response = self.client.post('/accounts/token/login/',data,format='json')

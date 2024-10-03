@@ -12,11 +12,11 @@ class currentUserSerializer(BaseUserRegistrationSerializer):
    
     class Meta:
         model = profile
-        fields = ["id",'email',"firstName","lastName"]
+        fields = ["id",'email',"first_name","last_name"]
         
 class createUserSerializer(BaseUserRegistrationSerializer):
     class Meta(BaseUserRegistrationSerializer.Meta):
-        fields = ["id","email","firstName","lastName","password"]
+        fields = ["id","email","first_name","last_name","password"]
 
 class deleteUserSerializer(BaseUserRegistrationSerializer):
     class Meta(BaseUserRegistrationSerializer.Meta):

@@ -32,3 +32,4 @@ django-imagekit
 boto3
 pyyaml
 graphene-django
+django-minio-backend

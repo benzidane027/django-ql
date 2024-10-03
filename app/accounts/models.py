@@ -11,7 +11,7 @@ def picture_upload(instance, filename):
     filename = '{}.{}'.format(instance.image_uid, ext)
     folder_name= f"storeFolder_{instance.username.replace(".","_")}"
     
-    return f"media/{folder_name}/{filename}"
+    return f"{folder_name}/{filename}"
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -21,7 +21,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError("User must have an password")
         
         email = self.normalize_email(str(email).strip().lower())
-        username=f"{extra_fields.get("firstName")}.{extra_fields.get("lastName")}.{datetime.datetime.now().timestamp()}"
+        username=f"{extra_fields.get("first_name")}.{extra_fields.get("last_name")}.{datetime.datetime.now().timestamp()}"
         user = self.model(email=email, username=username, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
@@ -40,7 +40,7 @@ class CustomUserManager(BaseUserManager):
 class profile(AbstractUser):
         
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ['password','firstName','lastName']
+    REQUIRED_FIELDS = ['password','first_name','last_name']
     EMAIL_FIELD = 'email'
 
     objects = CustomUserManager()
@@ -52,12 +52,12 @@ class profile(AbstractUser):
     age = models.IntegerField(name='age',default=0)
     gender = models.CharField(choices=GENDER ,default="male")
     avatar = models.CharField(choices=AVATAR ,default="1")
-    firstName= models.CharField(blank=False, max_length=150, verbose_name='first name')
-    lastName = models.CharField(blank=False, max_length=150, verbose_name='last name')
+    first_name= models.CharField(blank=False, max_length=150, verbose_name='first name')
+    last_name = models.CharField(blank=False, max_length=150, verbose_name='last name')
     
     @property
     def full_name(self):
-        return f"{self.firstName}_{self.lastName}"
+        return f"{self.first_name}_{self.last_name}"
     
     class Meta:
         app_label = 'accounts' 
@@ -66,7 +66,7 @@ class profile(AbstractUser):
         # ]
     
     def __str__(self) -> str:
-        return f"first name:{self.firstName}, last name:{self.lastName} ,email: {self.email} "
+        return f"first name:{self.first_name}, last name:{self.last_name} ,email: {self.email} "
     
 
 

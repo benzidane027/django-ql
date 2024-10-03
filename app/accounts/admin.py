@@ -3,6 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from .models import profile
 
 class ProfileAdmin(admin.ModelAdmin):
+    #this class use to show all field in admin page
     pass
     
     

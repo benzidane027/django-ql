@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 import os
+from typing import List, Tuple
 from decouple import config as ENV
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -191,10 +192,28 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = 'static/'
 
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#### MINIO
+
+MINIO_EXTERNAL_ENDPOINT = "127.0.0.1:9000"
+MINIO_EXTERNAL_ENDPOINT_USE_HTTPS = False
+MINIO_ENDPOINT = 'minio:9000'
+MINIO_ACCESS_KEY = ENV("AWS_ACCESS_KEY")
+MINIO_SECRET_KEY = ENV("AWS_SECRET_KEY")
+MINIO_PRIVATE_BUCKETS = [
+    
+]
+MINIO_PUBLIC_BUCKETS = [
+    ENV("AWS_BUCKET_NAME")
+]
+MINIO_POLICY_HOOKS: List[Tuple[str, dict]] = []
+
+MINIO_URL_EXPIRY_HOURS = timedelta(days=1)
+MINIO_MEDIA_FILES_BUCKET = 'test'
