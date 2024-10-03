@@ -11,6 +11,7 @@ ENV PYTHONUNBUFFERED 1
 #RUN apt-get update && apt install -y netcat
 
 # install dependencies
+RUN pip install django-minio-storage
 RUN pip install --upgrade pip
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
