@@ -40,6 +40,5 @@ django superuser:
   2- by fixtures
     docker compose exec api ./manage.py loaddata accounts/fixtures/data.json
 
-
 for generate ssl use the command:
     * openssl req -x509 -nodes -days 1000 -newkey rsa:2048 -keyout key.key -out cert.crt
