@@ -16,7 +16,7 @@ to run migrations:
 
 to run fixtures: (deprecated)
 
-docker compose exec api ./manage.py loaddata path/to/fixture/data.(yml or json)
+docker compose exec api ./manage.py loaddata path/to/fixtures/data.(yml or json)
 
 
 to explore the db :
@@ -32,10 +32,14 @@ to run test inside container:
 * docker compose exec api ./manage.py test
 
 django superuser:
-  command: docker compose exec api bash -c "./manage.py createsuperuser "
-  user : root
-  email: <root@root.dz>
-  pass : root
+  1- manually
+    command: docker compose exec api bash -c "./manage.py createsuperuser "
+    user : root
+    email: <root@root.dz>
+    pass : root
+  2- by fixtures
+    docker compose exec api ./manage.py loaddata accounts/fixtures/data.json
+
 
 for generate ssl use the command:
     * openssl req -x509 -nodes -days 1000 -newkey rsa:2048 -keyout key.key -out cert.crt
