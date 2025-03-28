@@ -4,7 +4,7 @@ from .models import profile
 
 class ProfileAdmin(admin.ModelAdmin):
     #this class use to show all field in admin page
-    pass
+    readonly_fields = ('date_joined','last_login','image_uid',"username")
     
     
 admin.site.register(profile, ProfileAdmin)

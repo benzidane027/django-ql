@@ -42,7 +42,7 @@ class profile(AbstractUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ['password','first_name','last_name']
     EMAIL_FIELD = 'email'
-
+    
     objects = CustomUserManager()
     image=models.ImageField("image","image",upload_to=picture_upload)
     image_uid = models.UUIDField(default=uuid.uuid4)
