@@ -1,15 +1,15 @@
 from django.contrib import admin
 from django.urls import path,include
-from .views import UserList
+from rest_framework_simplejwt.views import TokenBlacklistView
 
 urlpatterns = [
-    #path('',views.index),
-    path('test/', UserList.as_view(), name='user-list')
-
+    path('/', include('djoser.urls')),
+    path('/', include('djoser.urls.jwt')),
+    path('/logout/', TokenBlacklistView.as_view(), name='token_blacklist'),
 ]
 
 # /users/    " POST => singUp "
-# /users/me/
+# /users/me/ 
 # /users/confirm/
 # /users/resend_activation/
 # /users/set_password/

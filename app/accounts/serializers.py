@@ -7,12 +7,11 @@ from .models import profile
 class UserSerializer(BaseUserRegistrationSerializer):
     class Meta:
         model = profile
-        fields = ['email']
+        fields = ['email','gender']
 class currentUserSerializer(BaseUserRegistrationSerializer):
-   
     class Meta:
         model = profile
-        fields = ["id",'email',"first_name","last_name"]
+        fields = ["id",'email',"first_name","last_name",""]
         
 class createUserSerializer(BaseUserRegistrationSerializer):
     class Meta(BaseUserRegistrationSerializer.Meta):

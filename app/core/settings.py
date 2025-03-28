@@ -57,7 +57,8 @@ INSTALLED_APPS = [
 
     # third party apps
     'rest_framework',
-    'rest_framework.authtoken',
+    'rest_framework_simplejwt.token_blacklist',
+    #'rest_framework.authtoken',
     'djoser',
     'imagekit',
     'corsheaders',
@@ -163,20 +164,18 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         #'rest_framework.authentication.TokenAuthentication',  # this class can't hand time expiration
-        "accounts.authentication.ExpiringTokenAuthentication", # this class can hand time expiration
+        #"accounts.authentication.ExpiringTokenAuthentication", # this class can hand time expiration
         #'rest_framework.throttling.UserRateThrottle'           # define request call number for api
-    ), 
-     'DEFAULT_THROTTLE_RATES': {
-        'user': '1000/day'
-    }
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    )
 }
 
-AUTH_TOKEN_VALIDITY = timedelta(days=60)
+#AUTH_TOKEN_VALIDITY = timedelta(days=60)
 
-# SIMPLE_JWT = {
-# 'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-# 'REFRESH_TOKEN_LIFETIME': timedelta(minutes=360),
-# }
+SIMPLE_JWT = {
+'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+'REFRESH_TOKEN_LIFETIME': timedelta(minutes=360),
+}
 
 
 # Internationalization
